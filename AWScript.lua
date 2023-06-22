@@ -72,7 +72,7 @@ if game.PlaceId == 8260276694 then
       LoadingSubtitle = "by dasdres",
       ConfigurationSaving = {
          Enabled = true,
-         FolderName = nil, -- Create a custom folder for your hub/game
+         FolderName = nil, 
          FileName = "dasdres script"
       },
       Discord = {
@@ -100,7 +100,7 @@ if game.PlaceId == 8260276694 then
       Content = "The script is still under development so dont expect anything to be perfect lol",
       Duration = 6.5,
       Image = 4483362458,
-      Actions = { -- Notification Buttons
+      Actions = { 
          Ignore = {
             Name = "Okay!",
             Callback = function()
@@ -114,7 +114,7 @@ if game.PlaceId == 8260276694 then
       Name = "Expand Hitbox",
       Callback = function()
       hitboxexpand()
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -122,7 +122,7 @@ if game.PlaceId == 8260276694 then
       Name = "Normal HitBox",
       Callback = function()
       hitboxshrink()
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -130,7 +130,7 @@ if game.PlaceId == 8260276694 then
       Name = "Destroy Nametag",
       Callback = function()
          destroynametag()
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    local WSSlider = StuffTab:CreateSlider({
@@ -139,13 +139,12 @@ if game.PlaceId == 8260276694 then
       Increment = 1,
       Suffix = "Speed",
       CurrentValue = 20,
-      Flag = "WS", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+      Flag = "WS", 
       Callback = function(Value)
        local plyr = game.Players.localPlayer
        plyr.Character.Humanoid.WalkSpeed = Value
    
-         -- The function that takes place when the slider changes
-      -- The variable (Value) is a number which correlates to the value the slider is currently at
+
       end,
    })
    
@@ -155,7 +154,7 @@ if game.PlaceId == 8260276694 then
       Increment = 1,
       Suffix = "JP",
       CurrentValue = 50,
-      Flag = "JP", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+      Flag = "JP", 
       Callback = function(Value)
        
         local plyr = game.Players.localPlayer
@@ -167,8 +166,7 @@ if game.PlaceId == 8260276694 then
    
          
        
-      -- The function that takes place when the slider changes
-      -- The variable (Value) is a number which correlates to the value the slider is currently at
+     
       end,
    })
    
@@ -180,7 +178,7 @@ if game.PlaceId == 8260276694 then
       Callback = function()
       game.workspace["Tree Lord"].HumanoidRootPart.Size = Vector3.new(50, 50, 50)
       game.workspace["Tree Lord"].HumanoidRootPart.Transparency = 0.5
-      -- The function that takes place when the button is pressed
+     
       end,
    })
    
@@ -189,7 +187,7 @@ if game.PlaceId == 8260276694 then
       Callback = function()
        game.workspace["Mushroom King"].HumanoidRootPart.Size = Vector3.new(50, 50, 50)
       game.workspace["Mushroom King"].HumanoidRootPart.Transparency = 0.5
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -198,7 +196,7 @@ if game.PlaceId == 8260276694 then
       Callback = function()
          game.workspace.Dog.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
       game.workspace.Dog.HumanoidRootPart.Transparency = 0.5
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -207,7 +205,7 @@ if game.PlaceId == 8260276694 then
       Callback = function()
          game.workspace.Cat.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
       game.workspace.Cat.HumanoidRootPart.Transparency = 0.5
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -216,7 +214,7 @@ if game.PlaceId == 8260276694 then
       Callback = function()
          game.workspace.Scarecrow.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
       game.workspace.Scarecrow.HumanoidRootPart.Transparency = 0.5
-      -- The function that takes place when the button is pressed
+      
       end,
    })
  
@@ -226,16 +224,16 @@ if game.PlaceId == 8260276694 then
    local AntiVoidToggle = AntiTab:CreateToggle({
       Name = "Anti Void",
       CurrentValue = false,
-      Flag = "AVT", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+      Flag = "AVT", 
       Callback = function(Value)
          if Value == true then 
             antivoid()
-         else game.workspace.AntiVoidPart1:Destroy()
+         else 
+            game.workspace.AntiVoidPart1:Destroy()
             game.workspace.AntiVoidPart2:Destroy()
             game.workspace.AntiVoidPart3:Destroy()
          end
-      -- The function that takes place when the toggle is pressed
-      -- The variable (Value) is a boolean on whether the toggle is true or false
+
       end,
    })
 
@@ -245,7 +243,7 @@ if game.PlaceId == 8260276694 then
       Callback = function()
          workspace.Main.Shop.Attic.Alchemy["Alchemist Cauldron"]["Character Kill"].TouchInterest:Destroy()
 
-      -- The function that takes place when the button is pressed
+      
       end,
    })
 
@@ -295,20 +293,20 @@ elseif game.PlaceId == 10626447503 then
       
 function invadeblue()
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Blue Island"].C4s["Bomb C4"].CFrame
-   wait(20)
+   task.wait(25)
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Blue Island"].C4s:GetChildren()[1].CFrame
-   wait(20)
+   task.wait(25)
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Blue Island"].C4s:GetChildren()[2].CFrame
-   wait(20)
+   task.wait(25)
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Blue Island"].C4s:GetChildren()[3].CFrame
    end
    function invadered()
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Red Island"].C4s["Bomb C4"].CFrame
-   wait(20)
+   task.wait(25)
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Red Island"].C4s:GetChildren()[1].CFrame
-   wait(20)
+   task.wait(25)
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Red Island"].C4s:GetChildren()[2].CFrame
-   wait(20)
+   task.wait(25)
    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Red Island"].C4s:GetChildren()[3].CFrame
    end
 
@@ -321,7 +319,7 @@ function invadeblue()
          LoadingSubtitle = "by dasdres",
          ConfigurationSaving = {
             Enabled = true,
-            FolderName = nil, -- Create a custom folder for your hub/game
+            FolderName = nil, 
             FileName = "dasdres script"
          },
          Discord = {
@@ -349,7 +347,7 @@ function invadeblue()
          Content = "The script is still under development so dont expect anything to be perfect lol",
          Duration = 6.5,
          Image = 4483362458,
-         Actions = { -- Notification Buttons
+         Actions = { 
             Ignore = {
                Name = "Okay!",
                Callback = function()
@@ -363,7 +361,7 @@ function invadeblue()
          Name = "Expand Hitbox",
          Callback = function()
          hitboxexpandTB()
-         -- The function that takes place when the button is pressed
+         
          end,
       })
       
@@ -371,7 +369,7 @@ function invadeblue()
          Name = "Normal HitBox",
          Callback = function()
          hitboxshrinkTB()
-         -- The function that takes place when the button is pressed
+         
          end,
       })
       
@@ -379,7 +377,7 @@ function invadeblue()
          Name = "Destroy Nametag",
          Callback = function()
             destroynametagTB()
-         -- The function that takes place when the button is pressed
+         
          end,
       })
       local WSSliderTB = StuffTab:CreateSlider({
@@ -388,13 +386,12 @@ function invadeblue()
          Increment = 1,
          Suffix = "Speed",
          CurrentValue = 20,
-         Flag = "WSTB", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+         Flag = "WSTB", 
          Callback = function(Value)
           local plyr = game.Players.localPlayer
           plyr.Character.Humanoid.WalkSpeed = Value
       
-            -- The function that takes place when the slider changes
-         -- The variable (Value) is a number which correlates to the value the slider is currently at
+          
          end,
       })
       
@@ -405,7 +402,7 @@ function invadeblue()
    local AntiVoidToggleTB = AntiTab:CreateToggle({
       Name = "Anti Void",
       CurrentValue = false,
-      Flag = "AVTTB", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+      Flag = "AVTTB", 
       Callback = function(Value)
          if Value == true then 
             antivoidTB()
@@ -413,8 +410,7 @@ function invadeblue()
          end
          
    
-      -- The function that takes place when the toggle is pressed
-      -- The variable (Value) is a boolean on whether the toggle is true or false
+
       end,
    })
 
@@ -425,7 +421,7 @@ local IRButtonTB = IslandsTab:CreateButton({
          Name = "Invade Red",
          Callback = function()
             invadered()
-         -- The function that takes place when the button is pressed
+         
          end,
       })
 
@@ -433,7 +429,7 @@ local IRButtonTB = IslandsTab:CreateButton({
          Name = "Invade Blue",
          Callback = function()
             invadeblue()
-         -- The function that takes place when the button is pressed
+         
          end,
       })
 
@@ -482,7 +478,7 @@ elseif game.PlaceId == 10201596675 then
       LoadingSubtitle = "by dasdres",
       ConfigurationSaving = {
          Enabled = true,
-         FolderName = nil, -- Create a custom folder for your hub/game
+         FolderName = nil, 
          FileName = "dasdres script"
       },
       Discord = {
@@ -509,7 +505,7 @@ elseif game.PlaceId == 10201596675 then
       Content = "The script is still under development so dont expect anything to be perfect lol",
       Duration = 6.5,
       Image = 4483362458,
-      Actions = { -- Notification Buttons
+      Actions = { 
          Ignore = {
             Name = "Okay!",
             Callback = function()
@@ -525,7 +521,7 @@ elseif game.PlaceId == 10201596675 then
       Name = "Expand Hitbox",
       Callback = function()
       hitboxexpandD()
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -533,7 +529,7 @@ elseif game.PlaceId == 10201596675 then
       Name = "Normal HitBox",
       Callback = function()
       hitboxshrinkD()
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    
@@ -541,7 +537,7 @@ elseif game.PlaceId == 10201596675 then
       Name = "Destroy Nametag",
       Callback = function()
          destroynametagD()
-      -- The function that takes place when the button is pressed
+      
       end,
    })
    local WSSliderD = StuffTab:CreateSlider({
@@ -550,13 +546,12 @@ elseif game.PlaceId == 10201596675 then
       Increment = 1,
       Suffix = "Speed",
       CurrentValue = 20,
-      Flag = "WSD", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+      Flag = "WSD", 
       Callback = function(Value)
        local plyr = game.Players.localPlayer
        plyr.Character.Humanoid.WalkSpeed = Value
    
-         -- The function that takes place when the slider changes
-      -- The variable (Value) is a number which correlates to the value the slider is currently at
+        
       end,
    })
    
