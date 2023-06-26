@@ -22,13 +22,6 @@ if game.PlaceId == 8260276694 then
       AVPart3.Rotation = Vector3.new(0, 0, 0)
    end
    
-   function destroynametag()
-      local LocalPlayer = game.Players.LocalPlayer
-      
-      
-      LocalPlayer.Character.Head["Name Tag"]:Destroy()
-      end
-   
 
    
    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -60,7 +53,7 @@ if game.PlaceId == 8260276694 then
    })
    
    
-   local StuffTab = Window:CreateTab("Stuff", 4483362458) -- Title, Image
+   local StuffTab = Window:CreateTab("Stuff", 4483362458) 
    
    Rayfield:Notify({
       Title = "NOTE",
@@ -89,17 +82,37 @@ if game.PlaceId == 8260276694 then
             task.wait(0.1)
         for i, Player in pairs(game.Players:GetPlayers()) do
             local allplyrschar = Player.Character or Player.CharacterAdded or game.workspace[Player.Name]
-            local HumanoidRootPart = allplyrschar:GetChildren("HumanoidRootPart")
+            local HumanoidRootPart = Player.Character:FindFirstChild("HumanoidRootPart")
    
                 if allplyrschar and Player ~= game.Players.LocalPlayer and HumanoidRootPart then
-                   allplyrschar:WaitForChild("HumanoidRootPart").Size = Vector3.new(20, 20, 20)
-                   allplyrschar:WaitForChild("HumanoidRootPart").Transparency = 0.5
+                   Player.Character:WaitForChild("HumanoidRootPart").Size = Vector3.new(20, 20, 20)
+                   Player.Character:WaitForChild("HumanoidRootPart").Transparency = 0.5
                 end 
-   
+               if Player:WaitForChild("leaderstats"):WaitForChild("Ability").Value == "Mech" and allplyrschar and HumanoidRootPart and Player ~= game.Players.LocalPlayer then
+                  Player.Character:WaitForChild("HumanoidRootPart").Size = Vector3.new(30, 30, 30)
+                  Player.Character:WaitForChild("HumanoidRootPart").Transparency = 0.5
+                end
                end
                 task.wait()
             end
-            
+            while HitboxExpand == true do
+               for i, v in pairs(game.workspace:GetChildren()) do
+                  if v.Name == "Alien" and v:IsA("Part") and v:FindFirstChild("HumanoidRootPart") then
+                     v.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
+                     v.HumanoidRootPart.Transparency = 0.5
+                  end
+               end
+               task.wait()
+            end
+            if HitboxExpand == false then
+               for i, v in pairs(game.workspace:GetChildren()) do
+                  if v.Name == "Alien" and v:IsA("Part") and v:FindFirstChild("HumanoidRootPart") then
+                     v.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
+                     v.HumanoidRootPart.Transparency = 0.5
+                  end
+               end
+            end 
+                     
         
    
         if HitboxExpand == false then
@@ -115,11 +128,19 @@ if game.PlaceId == 8260276694 then
       end,
    })
 
-   local DNTButton = StuffTab:CreateButton({
-      Name = "Destroy Nametag",
-      Callback = function()
-         destroynametag()
-      
+   local DestroyNameTagToggle = StuffTab:CreateToggle({
+      Name = "Auto Destroy Nametag",
+      CurrentValue = false,
+      Flag = "DNT", 
+      Callback = function(Value)
+         getgenv().NametagDestoy = Value
+      while NametagDestoy == true do
+    local charac = game.Players.LocalPlayer.Character or game.Players.LocalPlayers.CharacterAdded
+    if charac and game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("Head"):FindFirstChild("Name Tag") then
+        game.Players.LocalPlayer.Character:FindFirstChild("Head")["Name Tag"]:Destroy()
+    end
+    task.wait()
+    end
       end,
    })
    local WSSlider = StuffTab:CreateSlider({
@@ -130,10 +151,8 @@ if game.PlaceId == 8260276694 then
       CurrentValue = 20,
       Flag = "WS", 
       Callback = function(Value)
-       local plyr = game.Players.localPlayer
+       local plyr = game.Players.LocalPlayer
        plyr.Character.Humanoid.WalkSpeed = Value
-   
-
       end,
    })
    
@@ -146,21 +165,15 @@ if game.PlaceId == 8260276694 then
       Flag = "JP", 
       Callback = function(Value)
        
-        local plyr = game.Players.localPlayer
+        local plyr = game.Players.LocalPlayer
        plyr.Character.Humanoid.JumpPower = Value
     
    
-   
-   
-   
-         
-       
-     
       end,
    })
    
    
-   local BossTab = Window:CreateTab("Bosses", 4483362458) -- Title, Image
+   local BossTab = Window:CreateTab("Bosses", 4483362458) 
    
    local TreeLordToggle = BossTab:CreateToggle({
       Name = "Tree Lord Hitbox",
@@ -180,8 +193,8 @@ if game.PlaceId == 8260276694 then
   if TreeLordHitbox == false then
    for i, v in pairs(game.workspace:GetChildren()) do 
       if v.Name == "Tree Lord" and v:FindFirstChild("HumanoidRootPart") then
-         game.workspace["Tree Lord"].HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
-         game.workspace["Tree Lord"].HumanoidRootPart.Transparency = 1
+         v.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
+         v.HumanoidRootPart.Transparency = 1
         end
     end
    end
@@ -198,8 +211,8 @@ if game.PlaceId == 8260276694 then
           while MushroomKingHitbox == true do
           for i, v in pairs(game.workspace:GetChildren()) do
           if v.Name == "Mushroom King" and v.HumanoidRootPart then
-           game.workspace["Mushroom King"].HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-           game.workspace["Mushroom King"].HumanoidRootPart.Transparency = 0.5
+           v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+           v.HumanoidRootPart.Transparency = 0.5
           end
       end
       wait()
@@ -207,8 +220,8 @@ if game.PlaceId == 8260276694 then
   if MushroomKingHitbox == false then
    for i, v in pairs(game.workspace:GetChildren()) do 
       if v.Name == "Mushroom King" and v:FindFirstChild("HumanoidRootPart") then
-         game.workspace["Mushroom King"].HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
-         game.workspace["Mushroom King"].HumanoidRootPart.Transparency = 1
+         v.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
+         v.HumanoidRootPart.Transparency = 1
         end
     end
    end
@@ -224,8 +237,8 @@ if game.PlaceId == 8260276694 then
           while CatHitbox == true do
           for i, v in pairs(game.workspace:GetChildren()) do
           if v.Name == "Cat" and v:FindFirstChild("HumanoidRootPart") then
-           game.workspace.Cat.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-           game.workspace.Cat.HumanoidRootPart.Transparency = 0.5
+           v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+           v.HumanoidRootPart.Transparency = 0.5
           end
       end
       wait()
@@ -233,8 +246,8 @@ if game.PlaceId == 8260276694 then
   if CatHitbox == false then
    for i, v in pairs(game.workspace:GetChildren()) do 
       if v.Name == "Cat" and v:FindFirstChild("HumanoidRootPart") then
-         game.workspace.Cat.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
-         game.workspace.Cat.HumanoidRootPart.Transparency = 1
+         v.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
+         v.HumanoidRootPart.Transparency = 1
         end
     end
    end
@@ -252,8 +265,8 @@ if game.PlaceId == 8260276694 then
           while DogHitbox == true do
           for i, v in pairs(game.workspace:GetChildren()) do
           if v.Name == "Dog" and v:FindFirstChild("HumanoidRootPart") then
-           game.workspace.Dog.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-           game.workspace.Dog.HumanoidRootPart.Transparency = 0.5
+           v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+           v.HumanoidRootPart.Transparency = 0.5
           end
       end
       wait()
@@ -262,8 +275,8 @@ if game.PlaceId == 8260276694 then
   if DogHitbox == false then
    for i, v in pairs(game.workspace:GetChildren()) do 
       if v.Name == "Dog" and v:FindFirstChild("HumanoidRootPart") then
-         game.workspace.Dog.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
-         game.workspace.Dog.HumanoidRootPart.Transparency = 1
+         v.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
+         v.HumanoidRootPart.Transparency = 1
         end
     end
    end
@@ -280,8 +293,8 @@ if game.PlaceId == 8260276694 then
           while ScarecrowHitbox == true do
           for i, v in pairs(game.workspace:GetChildren()) do
           if v.Name == "Scarecrow" and v:FindFirstChild("HumanoidRootPart") then
-           game.workspace.Scarecrow.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-           game.workspace.Scarecrow.HumanoidRootPart.Transparency = 0.5
+           v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+           v.HumanoidRootPart.Transparency = 0.5
           end
       end
       wait()
@@ -290,8 +303,8 @@ if game.PlaceId == 8260276694 then
   if ScarecrowHitbox == false then
    for i, v in pairs(game.workspace:GetChildren()) do 
       if v.Name == "Scarecrow" and v:FindFirstChild("HumanoidRootPart") then
-         game.workspace.Scarecrow.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
-         game.workspace.Scarecrow.HumanoidRootPart.Transparency = 1
+         v.HumanoidRootPart.Size = Vector3.new(10.8166, 10.8166, 5.40831)
+         v.HumanoidRootPart.Transparency = 1
         end
     end
    end
@@ -300,7 +313,7 @@ if game.PlaceId == 8260276694 then
    })
 
 
-   local AntiTab = Window:CreateTab("Anti", 4483362458) -- Title, Image
+   local AntiTab = Window:CreateTab("Anti", 4483362458) 
 
    local AntiVoidToggle = AntiTab:CreateToggle({
       Name = "Anti Void",
@@ -327,6 +340,79 @@ if game.PlaceId == 8260276694 then
       
       end,
    })
+   local TPTab = Window:CreateTab("Teleport", 4483362458) 
+
+   local TPLobbyButton = TPTab:CreateButton({
+      Name = "TP to Lobby",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10.4604406, 250.799988, 2.90667725, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+      end,
+   })
+
+   local TPALobbyButton = TPTab:CreateButton({
+      Name = "TP above Lobby",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(60.1661339, 281.692932, -2.39607096, -0.19936882, -0.0447050631, -0.978904247, -6.0798806e-09, 0.998958826, -0.045620922, 0.9799245, -0.00909538381, -0.199161246) 
+      end,
+   })
+
+   local TPArenaButton = TPTab:CreateButton({
+      Name = "TP to Arena",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2.16012311, 19.0389709, 17.0836773, 0.379294187, 4.30496385e-08, -0.92527616, -2.43067166e-08, 1, 3.65623194e-08, 0.92527616, 8.62255067e-09, 0.379294187)
+      end,
+   })
+   
+   local TPShopButton = TPTab:CreateButton({
+      Name = "TP to Shop",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-17.6881104, 20.0389862, 108.902466, -0.99960494, 8.96899479e-08, 0.0281065442, 9.09523052e-08, 1, 4.3634941e-08, -0.0281065442, 4.61740548e-08, -0.99960494)
+      end,
+   })
+   
+   local TPCaveButton = TPTab:CreateButton({
+      Name = "TP to Cave",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-91.5903625, 20.0389862, -99.5526962, 0.998134136, -4.43841905e-08, 0.0610591844, 4.00994935e-08, 1, 7.13981905e-08, -0.0610591844, -6.88165329e-08, 0.998134136)
+
+      end,
+   })
+   
+   local TPMysticCaveButton = TPTab:CreateButton({
+      Name = "TP to Mystic Cave",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Main.Mountain.Mystic.Altar.Stone:GetChildren()[25].CFrame
+      end,
+   })
+   
+   local TPSLobbyButton = TPTab:CreateButton({
+      Name = "TP to Spleef Lobby",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19110.7129, -7.96139765, 89.0617447, 0.991487682, 4.11808943e-09, -0.13020058, -1.46434855e-08, 1, -7.98824829e-08, 0.13020058, 8.11090857e-08, 0.991487682)
+      end,
+   })
+   
+   local TPSArenaButton = TPTab:CreateButton({
+      Name = "TP to Spleef Arena",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19103.2734, -7.96139765, -24.4411335, 0.0598865412, 3.78605343e-08, 0.998205185, 6.83758685e-08, 1, -4.20307664e-08, -0.998205185, 7.0770227e-08, 0.0598865412)
+      end,
+   })
+   
+   local TPTLobbyButton = TPTab:CreateButton({
+      Name = "TP to Tournament Lobby",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(21737.8242, 7.75048685, 88.4439468, 0.962687671, -5.73028878e-08, 0.270615011, 5.87473288e-08, 1, 2.76244561e-09, -0.270615011, 1.32385365e-08, 0.962687671)
+      end,
+   })
+   
+   local TPALobbyButton = TPTab:CreateButton({
+      Name = "TP to Tournament Arena",
+      Callback = function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(21752.3945, -2.99902344, 1.08387566, -0.915879786, -2.097718e-09, -0.401452571, 4.51478632e-09, 1, -1.55254192e-08, 0.401452571, -1.60318905e-08, -0.915879786)
+      end,
+   })
+   
 
 
 elseif game.PlaceId == 10626447503 then
@@ -339,16 +425,6 @@ elseif game.PlaceId == 10626447503 then
       AVTB.Anchored = true
       end
 
-
-      function destroynametagTB()
-         local LocalPlayer = game.Players.LocalPlayer
-         
-         
-         LocalPlayer.Character.Head["Name Tag"]:Destroy()
-         end
-
-
- 
 
       
 function invadeblue()
@@ -399,7 +475,7 @@ function invadeblue()
          }
       })
 
-      local StuffTab = Window:CreateTab("Stuff", 4483362458) -- Title, Image
+      local StuffTab = Window:CreateTab("Stuff", 4483362458) 
 
 
       Rayfield:Notify({
@@ -455,13 +531,22 @@ function invadeblue()
          end,
       })
       
-      local DNTButtonTB = StuffTab:CreateButton({
-         Name = "Destroy Nametag",
-         Callback = function()
-            destroynametagTB()
-         
+      local DestroyNameTagToggleTB = StuffTab:CreateToggle({
+         Name = "Auto Destroy Nametag",
+         CurrentValue = false,
+         Flag = "DNTTB", 
+         Callback = function(Value)
+            getgenv().NametagDestoy = Value
+         while NametagDestoy == true do
+       local charac = game.Players.LocalPlayer.Character or game.Players.LocalPlayers.CharacterAdded
+       if charac and game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("Head"):FindFirstChild("Name Tag") then
+           game.Players.LocalPlayer.Character:FindFirstChild("Head")["Name Tag"]:Destroy()
+       end
+       task.wait()
+       end
          end,
       })
+
       local WSSliderTB = StuffTab:CreateSlider({
          Name = "Walkspeed",
          Range = {20, 300},
@@ -470,7 +555,7 @@ function invadeblue()
          CurrentValue = 20,
          Flag = "WSTB", 
          Callback = function(Value)
-          local plyr = game.Players.localPlayer
+          local plyr = game.Players.LocalPlayer
           plyr.Character.Humanoid.WalkSpeed = Value
       
           
@@ -479,7 +564,7 @@ function invadeblue()
       
 
 
-   local AntiTab = Window:CreateTab("Anti", 4483362458) -- Title, Image
+   local AntiTab = Window:CreateTab("Anti", 4483362458) 
 
    local AntiVoidToggleTB = AntiTab:CreateToggle({
       Name = "Anti Void",
@@ -496,7 +581,7 @@ function invadeblue()
       end,
    })
 
-   local IslandsTab = Window:CreateTab("Islands", 4483362458) -- Title, Image
+local IslandsTab = Window:CreateTab("Islands", 4483362458) 
    
 
 local IRButtonTB = IslandsTab:CreateButton({
@@ -555,7 +640,7 @@ elseif game.PlaceId == 10201596675 then
       }
    })
    
-   local StuffTab = Window:CreateTab("Stuff", 4483362458) -- Title, Image
+   local StuffTab = Window:CreateTab("Stuff", 4483362458) 
    
    Rayfield:Notify({
       Title = "NOTE",
@@ -627,7 +712,7 @@ elseif game.PlaceId == 10201596675 then
       CurrentValue = 20,
       Flag = "WSD", 
       Callback = function(Value)
-       local plyr = game.Players.localPlayer
+       local plyr = game.Players.LocalPlayer
        plyr.Character.Humanoid.WalkSpeed = Value
    
         
