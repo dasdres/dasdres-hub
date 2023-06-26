@@ -97,7 +97,7 @@ if game.PlaceId == 8260276694 then
             end
             while HitboxExpand == true do
                for i, v in pairs(game.workspace:GetChildren()) do
-                  if v.Name == "Alien" and v:IsA("Part") and v:FindFirstChild("HumanoidRootPart") then
+                  if v.Name == "Alien" and v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
                      v.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
                      v.HumanoidRootPart.Transparency = 0.5
                   end
@@ -106,9 +106,9 @@ if game.PlaceId == 8260276694 then
             end
             if HitboxExpand == false then
                for i, v in pairs(game.workspace:GetChildren()) do
-                  if v.Name == "Alien" and v:IsA("Part") and v:FindFirstChild("HumanoidRootPart") then
-                     v.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
-                     v.HumanoidRootPart.Transparency = 0.5
+                  if v.Name == "Alien" and v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+                     v.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
+                     v.HumanoidRootPart.Transparency = 1
                   end
                end
             end 
